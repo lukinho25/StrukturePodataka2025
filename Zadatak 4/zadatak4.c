@@ -19,9 +19,14 @@ td struct poly {
 
 otvoriti dat
 -buffer
-if(sscanf(buffer, "%d %d %n", &coeff, &pow, &n) n != 2) {
+if(sscanf(buffer, "%d %d %n", &coeff, &pow, &n) != 2) {
     
-
+-newEl = Null;
+p = &firstPoly;
+if(p->next == Null)
+    - alokacija
+    newEl -> next = p -> next
+    p -> next = newEl
 
 
 
