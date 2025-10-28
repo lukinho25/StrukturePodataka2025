@@ -28,10 +28,32 @@ if(p->next == Null)
     newEl -> next = p -> next
     p -> next = newEl
 
+    prev = p
+    p = p -> next
 
+    dalje koristi cijeli puni naziv npr &coefficient i &power
 
+    if(p->next == NULL && p->pow > power) {
+     
+if(p != null && p->pow < power)
+    -alokacija
+    newEl -> next = p;
+    prev -> next = newEl;
 
+if(p != null && p->pow == power);
+    -   alokacija
 
+ili izbrisat jednog clana ili procitati novi koeficijent i dodati na postojeći
+
+p->coeff += newEl -> coefficient
+free(newEl)
+
+if(p->coeff == 0)
+    prev -> next = p -> next
+    p -> next = Null
+    free(p)
+
+    
 */
 
 
