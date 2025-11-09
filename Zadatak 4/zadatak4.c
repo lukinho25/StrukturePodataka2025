@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 /*
 Head
@@ -56,19 +58,3 @@ if(p->coeff == 0)
     
 */
 
-
-
-
-
-
-
-
-
-
-
-int main() {
-
-
-return 0;
-
-}
