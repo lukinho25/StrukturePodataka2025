@@ -170,7 +170,7 @@ void freeStack(Position head) {
 
 int main() {
     Position head = CreateNewElement(0); //Dummy head element
-    //Position head = { .number = 0, .next = NULL };
+    //Postfix head = { .number = 0, .next = NULL };
     if (!head) {
         return -1;
     }

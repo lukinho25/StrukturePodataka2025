@@ -7,7 +7,7 @@ Head
 firstPoly
 secondPoly
 
-Head = {.coeff = 0, .pow = 0, .next = NULL}
+poly Head = {.coeff = 0, .pow = 0, .next = NULL}
 firstPoly = Head;
 secondPoly = Head;
 q = &Head;
@@ -20,7 +20,7 @@ td struct poly {
     }Poly;
 
 otvoriti dat
--buffer
+-buffer, nakon svega oslobodit buffer
 if(sscanf(buffer, "%d %d %n", &coeff, &pow, &n) != 2) {
     
 -newEl = Null;
