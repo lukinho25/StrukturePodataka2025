@@ -1,0 +1,137 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX 50
+
+typedef struct directory* dirPosition;
+typedef struct stack* stackPosition;
+
+typedef struct directory {
+    char name[MAX];
+    dirPosition next;
+    dirPosition subDir;
+} directory;
+
+typedef struct stack {
+    dirPosition dirLevel;
+    stackPosition next;
+} stack;
+
+/* Funkcije za stog */
+void push(stackPosition head, dirPosition dir) {
+    stackPosition newEl = malloc(sizeof(stack));
+    newEl->dirLevel = dir;
+    newEl->next = head->next;
+    head->next = newEl;
+}
+
+void pop(stackPosition head) {
+    if (head->next == NULL) {
+        printf("Vec ste u root direktoriju!\n");
+        return;
+    }
+    stackPosition temp = head->next;
+    head->next = temp->next;
+    free(temp);
+}
+
+/* Kreiranje novog direktorija */
+dirPosition createDir(char* name) {
+    dirPosition newDir = malloc(sizeof(directory));
+    strcpy(newDir->name, name);
+    newDir->next = NULL;
+    newDir->subDir = NULL;
+    return newDir;
+}
+
+/* md */
+void makeDir(stackPosition head, char* name) {
+    dirPosition parent = head->next->dirLevel;
+    dirPosition newDir = createDir(name);
+
+    newDir->next = parent->subDir;
+    parent->subDir = newDir;
+}
+
+/* cd dir */
+void changeDir(stackPosition head, char* name) {
+    dirPosition current = head->next->dirLevel;
+    dirPosition temp = current->subDir;
+
+    while (temp != NULL) {
+        if (strcmp(temp->name, name) == 0) {
+            push(head, temp);
+            return;
+        }
+        temp = temp->next;
+    }
+    printf("Direktorij ne postoji!\n");
+}
+
+/* dir */
+void printDir(dirPosition current, int level) {
+    dirPosition temp = current->subDir;
+
+    while (temp != NULL) {
+        for (int i = 0; i < level; i++)
+            printf("  ");
+        printf("|-- %s\n", temp->name);
+
+        printDir(temp, level + 1);
+        temp = temp->next;
+    }
+}
+
+/* Glavni program */
+int main() {
+    directory headDir = { "", NULL, NULL };
+    stack headStack = { NULL, NULL };
+
+    dirPosition root = createDir("C:");
+    headDir.next = root;
+
+    push(&headStack, root);
+
+    int izbor;
+    char ime[MAX];
+
+    do {
+        printf("\n1 - md\n2 - cd dir\n3 - cd..\n4 - dir\n5 - izlaz\n");
+        printf("Izbor: ");
+        scanf("%d", &izbor);
+
+        switch (izbor) {
+        case 1:
+            printf("Ime direktorija: ");
+            scanf("%s", ime);
+            makeDir(&headStack, ime);
+            break;
+
+        case 2:
+            printf("Ime direktorija: ");
+            scanf("%s", ime);
+            changeDir(&headStack, ime);
+            break;
+
+        case 3:
+            pop(&headStack);
+            break;
+
+        case 4:
+            printf("\nSadrzaj direktorija %s:\n",
+                   headStack.next->dirLevel->name);
+            printDir(headStack.next->dirLevel, 0);
+            break;
+
+        case 5:
+            printf("Izlaz iz programa.\n");
+            break;
+
+        default:
+            printf("Nepostojeca opcija!\n");
+        }
+    } while (izbor != 5);
+
+    return 0;
+}
