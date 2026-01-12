@@ -6,8 +6,8 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/lukinho/Documents/GitHub/StrukturePodataka2025/Zadatak 9",
-      "program": "/Users/lukinho/Documents/GitHub/StrukturePodataka2025/Zadatak 9/build/Debug/outDebug"
+      "cwd": "/Users/lukinho/Documents/GitHub/StrukturePodataka2025/Zadatak 10",
+      "program": "/Users/lukinho/Documents/GitHub/StrukturePodataka2025/Zadatak 10/build/Debug/outDebug"
     }
   ]
 }

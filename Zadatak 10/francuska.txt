@@ -1,0 +1,5 @@
+Pariz,2140526
+Marseille,861635
+Lyon,515695
+Toulouse,479553
+Nice,342637
